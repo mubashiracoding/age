@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        button {
+            color: whitesmoke;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Age Calculator</h3>
+        <p>Select your date of birth:</p>
+        <input type="date" class="input"><br>
+        <button class="cal">Calculate</button><br>
+        <span class="rel">Your age is </span>
+    </div>
+    <script>
+        const inputbtn = document.getElementsByClassName('input')[0]; 
+        const calculate = document.getElementsByClassName('cal')[0]; 
+        const resultbtn = document.getElementsByClassName('rel')[0]; 
+
+        calculate.addEventListener('click', () => {
+            if (inputbtn.value === '') {
+                alert('Enter your date of birth');
+            } else {
+                const dob = new Date(inputbtn.value);
+                const now = new Date();
+                
+                let age = now.getFullYear() - dob.getFullYear();
+                const monthDiff = now.getMonth() - dob.getMonth();
+                const dayDiff = now.getDate() - dob.getDate();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                    age--;
+                }
+
+                resultbtn.innerHTML = `Your age is: ${age}`;
+            }
+        });
+    </script>
+</body>
+</html>
